@@ -1,0 +1,111 @@
+html, body, #map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    font-size: 14px;
+}
+
+.search {
+    color: black;
+    background-color: rgba(255, 255, 255, .9);
+    position: absolute;
+    top: 10px;
+    right: 78px;
+    cursor: pointer;
+    padding: 7px 6px;
+    border-radius: 4px;
+    border: 2px solid #9ac2c3;
+}
+
+.loc-btn-large {
+    color: black;
+    background-color: rgba(255, 255, 255, .9);
+    position: absolute;
+    top: 27px;
+    left: 35%;
+    cursor: pointer;
+    padding: 22px 20px;
+    border-radius: 4px;
+    border: 1px solid gray;
+}
+
+.search {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid gray;
+    padding: 15px 10px;
+    width: 30%;
+}
+
+.search input {
+    width: 80%;
+    padding: 10px;
+}
+
+.toggler {
+    position: absolute;
+    top: 6px;
+    right: 14px;
+    font-size: 13px;
+    font-style: italic;
+    color: #a6a6a6;
+    cursor: pointer;
+}
+
+.list{
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid gray;
+    padding: 15px 10px;
+    width: 30%;
+}
+
+.list ul{
+    list-style-type: none;
+    display: inline;
+    line-height: 1em;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 775px) {
+    .search {
+        top: 10px;
+        padding: 7px;
+        width: 50%;
+    }
+
+    .search input {
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .loc-btn-large{
+        color: black;
+        background-color: rgba(255, 255, 255, .9);
+        position: absolute;
+        top: 10px;
+        left: 55%;
+        cursor: pointer;
+        padding: 14px;
+        border-radius: 4px;
+        border: 1px solid gray;
+    }
+
+    .list{
+        position: absolute;
+        top: 75px;
+        right: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid gray;
+        padding: 15px 10px;
+        width: 40%;
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Neighborhood Map</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="map" id="map"></div>
+  <!-- Search bar -->
+  <div class="search" id="search">
+    <input placeholder="Search Locations" class="search-box" id="search-box" data-bind="textInput: searchTerm, valueUpdate: 'afterkeydown'">
+  </div>
+  <!-- center map -->
+  <div class="loc-btn-large" data-bind="click: centerMap">
+        <i class="fa fa-compass fa-2x"></i>
+  </div>
+  <!-- list -->
+  <div class="list text-center" id="list">
+    <span class="toggler" data-bind="text: toggleSymbol, click: listToggle">hide</span>
+    <div data-bind="visible: toggleSymbol() === 'hide'">
+      <h1>Places</h1>
+      <hr>
+      <ul class="results" id="results" data-bind="visible: toggleSymbol() === 'hide', foreach: filteredList">
+        <li class="place" id="place" data-bind="text: name, click: bounce"></li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDoj-UG-KLugR5CnArG4Pr7LYSY8mVT6zw&v=3&callback=startApp" onerror="errorHandlingMap()"></script>
+</body>0
+</html>
