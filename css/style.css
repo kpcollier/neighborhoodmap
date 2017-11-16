@@ -1,0 +1,93 @@
+body {
+	margin: 0;
+	font-family: Georgia, sans-serif;
+}
+
+.map {
+	order: 2;
+	flex-grow: 4;
+	text-align: center;
+	height: 1000px;
+	background-color: #dddddd;
+}
+
+.search {
+	display: flex;
+	width: 100%;
+}
+
+.search-box {
+	flex-grow: 1;
+	height: 35px;
+	font-size: 1em;
+	padding: 5px 20px;
+	background-color: #fff;
+}
+
+.project {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+.list {
+	max-width: 360px;
+	order: 1;
+	flex-grow: 1;
+	background-color: #0e1a40;
+}
+
+.results {
+	margin: 0;
+	padding: 0;
+}
+
+.locations {
+    margin: 15px;
+    padding: 7px;
+    list-style: none;
+    background-color: #946b2d;
+		border-radius: 10px;
+}
+
+.locations:hover{
+	cursor: pointer;
+	background-color: #d3a625;
+}
+
+@media only screen and (max-device-width : 959px), only screen and (max-width : 959px)  {
+
+.project {
+	flex-direction: column;
+}
+
+.search{
+	position: fixed;
+	z-index: 1;
+}
+
+.search-box, .list {
+	font-size: 1.5em;
+}
+
+.clicked{
+	background-color: lightgreen;
+}
+
+
+.list{
+	height: 0;
+}
+
+.slide-down{
+	height: 482px;
+	position: fixed;
+	top: 64px;
+	width: 100%;
+	z-index: 1;
+}
+
+
+.search-box, .list {
+	font-size: 1.5em;
+}
