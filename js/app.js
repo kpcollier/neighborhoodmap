@@ -60,7 +60,7 @@ var Location = function(data) {
 //Using Foursquare API
 	$.getJSON(foursquareURL).done(function(data) {
 		var results = data.response.venues[0];
-		self.URL = results.url;
+		self.URL = results.URL;
 		if (typeof self.URL === 'undefined'){
 			self.URL = "";
 		}
