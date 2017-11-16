@@ -76,7 +76,10 @@ body {
 
 
 .list{
-	height: 0;
+	top: 75px;
+	right: 10px;
+	width: 40%;
+	padding: 15px 10px;
 }
 
 .slide-down{
