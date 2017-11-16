@@ -10,8 +10,8 @@ This is a map of several tourist attractions in Santa Cruz, California.
 
 ## Getting Started
 
-*Download/Clone this repository.
-*Open index.html.
+* Download/Clone this repository.
+* Open index.html.
 
 ## Built With
 
