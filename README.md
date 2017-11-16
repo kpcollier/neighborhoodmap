@@ -1,10 +1,12 @@
-# Project Title
+# Neighborhood Map
 
 One Paragraph of project description goes here
 
 ## About
 
 Project #5 of the Udacity Full Stack Nanodegree. This project involves developing a single page application using various APIs. In this particular project, I used the Google Maps API to build a map with several location markers. I also implemented Foursquare API to give more information on each location.
+
+This is a map of several tourist attractions in Santa Cruz, California.
 
 ## Getting Started
 
