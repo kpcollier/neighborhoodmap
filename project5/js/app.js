@@ -42,12 +42,7 @@ function initMap() {
           markers.push(marker);
           bounds.extend(marker.position);
 
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
-
-            map.fitBounds(bounds);
-          });
-
+          map.fitBounds(bounds);
         }
 
 
