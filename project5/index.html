@@ -15,14 +15,14 @@
       <h1>Resorts in Reno, NV.</h1>
       <!-- Search Bar -->
       <div class="search" id="search">
-        <input type="text" class="search-box" placeholder="Ex. Atlantis Resort Casino"" />
+        <input type="text" class="search-box" placeholder="Ex. Atlantis Resort Casino" />
         <!--<button type="submit" class="searchButton">
           <i class="fa fa-search"></i>
         </button>-->
       </div>
       <aside class="locations-list">
-        <ul class="list" id="list" data-bind="forEach: placesList">
-          <li class="place" id="place" data-bind="text: title, click: bounce"></li>
+        <ul class="list" id="list" data-bind="foreach: placesList">
+          <li class="place" id="place" data-bind="text: title, click: $root.showPopup.bind($root,$index())"></li>
         </ul>
       </aside>
     </div>
