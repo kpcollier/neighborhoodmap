@@ -10,6 +10,8 @@ var locations = [
   {title: 'Peppermill Reno', location: {lat: 39.49687, lng: -119.80213}}
 ];
 
+var selectedLocation = undefined;
+var selectedMarker = undefined;
 function initMap() {
         var reno = {lat: 39.5067, lng: -119.7899};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -21,7 +23,7 @@ function initMap() {
         var bounds = new google.maps.LatLngBounds();
 
         //Create Infowindow
-        var largeInfowindow = new google.maps.InfoWindow();
+var largeInfowindow = new google.maps.InfoWindow();
 
         var defaultIcon = makeMarkerIcon('00B4CC');
 
@@ -46,6 +48,9 @@ function initMap() {
 
           bounds.extend(marker.position);
 
+if(selectedLocation) {
+  populateInfoWindow(selectedMarker, largeInfowindow);
+}
           marker.addListener('click', function() {
             populateInfoWindow(this, largeInfowindow);
           });
@@ -109,19 +114,46 @@ function initMap() {
 
 };
 
+var places = function(data) {
+  this.title = ko.observable(data.title);
+  this.location = ko.observable(data.location);
+};
+
 var myViewModel = function() {
   var self = this;
 
-  var places = function(data) {
-    this.title = ko.observable(data.title);
-    this.location = ko.observable(data.location);
+  this.placesList = ko.observableArray([
+    {title: 'Eldorado Resort Casino', location: {lat: 39.52947, lng: -119.81497}},
+    {title: 'Atlantis Casino Resort Spa', location: {lat: 39.48890, lng: -119.79369}},
+    {title: 'Silver Legacy Reno', location: {lat: 39.53045, lng: -119.81517}},
+    {title: 'Circus Circus Reno', location: {lat: 39.53179, lng: -119.81529}},
+    {title: 'Grand Sierra Resort', location: {lat: 39.52316, lng: -119.77842}},
+    {title: 'Peppermill Reno', location: {lat: 39.49687, lng: -119.80213}}
+  ]);
+  this.showPopup = function(index) {
+
+    var position = locations[index].location;
+    var title = locations[index].title;
+    console.log( locations[index]);
+    var defaultIcon = new google.maps.MarkerImage(
+      'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + '00B4CC' +
+      '|40|_|%E2%80%A2',
+      new google.maps.Size(21, 34),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(10, 34),
+      new google.maps.Size(21, 34));
+        var marker = new google.maps.Marker({
+          map: map,
+          position: position,
+          title: title,
+          id: index,
+          icon: defaultIcon
+        });
+    selectedMarker = marker;
+    google.maps.event.trigger(markers[index], 'click')
+    selectedLocation = true;
+    //initMap();
   }
-
-  this.placesList = ko.observableArray([]);
-
-  locations.forEach(function(placesItem) {
-    self.placesList.push(new places(placesItem));
-  });
 
 };
 
