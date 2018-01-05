@@ -79,13 +79,13 @@ h1 {
   background-color: white;
   border-radius: 5px;
   border: 3px solid #00B4CC;
-  cursor: pointer;
 }
 
 .list {
   color: #00B4CC;
   font-size: 1.5em;
   line-height: 2em;
+  cursor: pointer;
 }
 
 @media only screen and (max-device-width : 960px), only screen and (max-width : 960px) {
