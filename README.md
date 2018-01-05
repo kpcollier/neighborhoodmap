@@ -39,11 +39,9 @@ This is a map of several popular resorts in Reno, Nevada.
 
 https://developers.google.com/maps/documentation/javascript/
 
-http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
-
 http://www.knockoutjs.com/documentation/introduction.html
 
-https://developer.foursquare.com/
+MediaWiki Documentation
 
 Udacity Forums
 
