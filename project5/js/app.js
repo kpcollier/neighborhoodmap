@@ -136,7 +136,7 @@ this.filter = ko.observableArray('');
   this.filter.subscribe( (newValue) => {
     this.placesList([]);
     for(var i=0; i< locations.length; i++) {
-      if(locations[i].title.startsWith(newValue)) {
+      if(locations[i].title.includes(newValue)) {
         this.placesList.push(locations[i]);
       }
     }
@@ -169,6 +169,6 @@ this.filter = ko.observableArray('');
 
 ko.applyBindings(new myViewModel());
 
-function error() {
+function errorHandling() {
   alert("Something went wrong with Google Maps. Please try again.")
 };
