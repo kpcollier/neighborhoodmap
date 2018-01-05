@@ -1,17 +1,29 @@
 # Neighborhood Map
 
-One Paragraph of project description goes here
-
 ## About
 
-Project #5 of the Udacity Full Stack Nanodegree. This project involves developing a single page application using various APIs. In this particular project, I used the Google Maps API to build a map with several location markers. I also implemented Foursquare API to give more information on each location.
+Project #5 of the Udacity Full Stack Nanodegree. This project involves developing a single page application using various APIs. In this particular project, I used the Google Maps API to build a map with several location markers. I also implemented Wiki API to provide an article on each location.
 
-This is a map of several tourist attractions in Santa Cruz, California.
+This is a map of several popular resorts in Reno, Nevada.
 
 ## Getting Started
 
 * Download/Clone this repository.
-* Open index.html.
+* Open index.html
+
+## Locations
+* Eldorado Resort Casino
+* Silver Legacy Resort
+* Atlantis Resort Casino Spa
+* Peppermill Reno
+* Grand Sierra Resort
+
+## Features
+
+* Google Maps API with markers to each location
+* An infowindow for each marker that provides an article from Wikipedia of the resort
+* A list of each resort, click it and it's infowindow will pop up
+* A search bar, start typing in the name of a resort on the list and the list will filter to matching input
 
 ## Built With
 
@@ -21,7 +33,7 @@ This is a map of several tourist attractions in Santa Cruz, California.
 * JQuery
 * Knockout
 * Google Maps API
-* Foursquare API
+* Wiki API
 
 ## Acknowledgments
 
