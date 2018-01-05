@@ -1,6 +1,7 @@
 var map;
 var markers = [];
 
+//List of locations, these would normally be in a database
 var locations = [
   {title: 'Eldorado Resort Casino', location: {lat: 39.52947, lng: -119.81497}},
   {title: 'Atlantis Casino Resort Spa', location: {lat: 39.48890, lng: -119.79369}},
@@ -12,10 +13,12 @@ var locations = [
 
 var selectedLocation = undefined;
 var selectedMarker = undefined;
+
+//Create map
 function initMap() {
         var reno = {lat: 39.5067, lng: -119.7899};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 9,
           center: reno
         });
 
@@ -23,8 +26,9 @@ function initMap() {
         var bounds = new google.maps.LatLngBounds();
 
         //Create Infowindow
-var largeInfowindow = new google.maps.InfoWindow();
+        var largeInfowindow = new google.maps.InfoWindow();
 
+        //Marker color animation
         var defaultIcon = makeMarkerIcon('00B4CC');
 
         var highlightedIcon = makeMarkerIcon('FFFF24');
@@ -65,7 +69,7 @@ if(selectedLocation) {
           map.fitBounds(bounds);
 
         }
-
+        //WikiAPI to populate each markers infowindow
         function populateInfoWindow(marker, infowindow) {
           if (infowindow.marker != marker) {
             infowindow.marker = marker;
@@ -98,8 +102,8 @@ if(selectedLocation) {
 
 			  }
 			});
-          }
-        }
+      }
+    }
 
         function makeMarkerIcon(markerColor) {
           var markerImage = new google.maps.MarkerImage(
@@ -114,13 +118,12 @@ if(selectedLocation) {
 
 };
 
-var places = function(data) {
-  this.title = ko.observable(data.title);
-  this.location = ko.observable(data.location);
-};
-
+//Begin ViewModel
 var myViewModel = function() {
   var self = this;
+
+this.filter = ko.observableArray('');
+
 
   this.placesList = ko.observableArray([
     {title: 'Eldorado Resort Casino', location: {lat: 39.52947, lng: -119.81497}},
@@ -130,8 +133,15 @@ var myViewModel = function() {
     {title: 'Grand Sierra Resort', location: {lat: 39.52316, lng: -119.77842}},
     {title: 'Peppermill Reno', location: {lat: 39.49687, lng: -119.80213}}
   ]);
+  this.filter.subscribe( (newValue) => {
+    this.placesList([]);
+    for(var i=0; i< locations.length; i++) {
+      if(locations[i].title.startsWith(newValue)) {
+        this.placesList.push(locations[i]);
+      }
+    }
+  }, this)
   this.showPopup = function(index) {
-
     var position = locations[index].location;
     var title = locations[index].title;
     console.log( locations[index]);
@@ -158,3 +168,7 @@ var myViewModel = function() {
 };
 
 ko.applyBindings(new myViewModel());
+
+function error() {
+  alert("Something went wrong with Google Maps. Please try again.")
+};
