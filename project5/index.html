@@ -8,14 +8,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
   <!-- CSS stylesheet -->
   <link rel="stylesheet" href="./css/style.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
-  <div class="container">
-    <div class="options-box">
+  <div  class="container">
+    
+	<i data-bind="click: switchPanel()" class="fa fa-2x fa-window-maximize" aria-hidden="true"></i>
+    <div data-bind="visible: showSidePanel" class="options-box">
       <h1>Resorts in Reno, NV.</h1>
       <!-- Search Bar -->
       <div class="search" id="search">
-        <input type="text" data-bind="textInput: filter" class="search-box" placeholder="Ex. Atlantis Casino Resort Spa"  />
+        <input type="text" data-bind="textInput: filter" class="search-box" placeholder="Ex. Peppermill Reno"  />
         <!--<button type="submit" class="searchButton">
           <i class="fa fa-search"></i>
         </button>-->
@@ -26,7 +29,7 @@
         </ul>
       </aside>
     </div>
-    <div id="map"></div>
+    <div data-bind="css: { mapPaddingFull: showSidePanel()==false }" class="map-padding" id="map"></div>
   </div>
 
 
@@ -63,6 +66,6 @@
     crossorigin="anonymous"></script>
   <script src="./js/app.js"></script>
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyg9EJbWDks1UyP8Qgh12nXoOREGKxkyI&callback=initMap&libraries=places"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyg9EJbWDks1UyP8Qgh12nXoOREGKxkyI&callback=initMap&libraries=places" onerror="errorHandling()"></script>
 </body>
 </html>
