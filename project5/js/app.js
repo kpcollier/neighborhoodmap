@@ -12,7 +12,7 @@ var locations = [
 ];
 
 var selectedLocation;
-var selectedMarke;
+var selectedMarker;
 var map = null;
 //Create map
 function initMap() {
@@ -52,9 +52,6 @@ function initMap() {
 
           bounds.extend(marker.position);
 
-if(selectedLocation) {
-  populateInfoWindow(selectedMarker, largeInfowindow);
-}
           marker.addListener('click', function() {
             populateInfoWindow(this, largeInfowindow);
           });
@@ -65,6 +62,10 @@ if(selectedLocation) {
           marker.addListener('mouseout', function() {
             this.setIcon(defaultIcon);
           });
+
+if(selectedLocation) {
+  populateInfoWindow(selectedMarker, largeInfowindow);
+}
 
           map.fitBounds(bounds);
 
