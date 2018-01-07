@@ -103,7 +103,7 @@ if(selectedLocation) {
 					articleStr = articleList[i];
 					var url = 'http://en.wikipedia.org/wiki/' + articleStr;
 					contentString = contentString + '<div class="infoWindow"><h1><strong>' + marker.title + '</strong></h1><br>' + '<p>' + "View Resort Article Here:" + '<p>' + '<a href=\"' + url + '\">' + url + '</a>' + '<br>';
-				};
+				}
 				clearTimeout(wikiRequestTimeout);
 				infowindow.setContent(contentString);
 
@@ -123,7 +123,7 @@ if(selectedLocation) {
           return markerImage;
         }
 
-};
+}
 
 //Begin ViewModel
 var myViewModel = function() {
@@ -135,16 +135,16 @@ this.showSidePanel = ko.observable(true);
 
 this.deviceType = function() {
 	if ($(window).width() > 960)
-    layoutType('normal')
+    layoutType('normal');
   else if ($(window).width() <= 960)
-    layoutType('compact')
+    layoutType('compact');
 
 	return layoutType;
-}
+};
 
 this.switchPanel = function() {
   this.showSidePanel(!this.showSidePanel());
-}
+};
   this.placesList = ko.observableArray([
     {title: 'Eldorado Resort Casino', location: {lat: 39.52947, lng: -119.81497}},
     {title: 'Atlantis Casino Resort Spa', location: {lat: 39.48890, lng: -119.79369}},
@@ -169,7 +169,7 @@ this.switchPanel = function() {
 
       }
     }
-  }, this)
+  }, this);
   this.showPopup = function(index, data) {
 	  console.log(data);
 	  var mark = null;
@@ -197,15 +197,15 @@ this.switchPanel = function() {
           icon: defaultIcon
         });
     selectedMarker = marker;
-    google.maps.event.trigger(mark, 'click')
+    google.maps.event.trigger(mark, 'click');
     selectedLocation = true;
     //initMap();
-  }
+  };
 
 };
 
 ko.applyBindings(new myViewModel());
 
 function errorHandling() {
-  alert("Something went wrong with Google Maps. Please try again.")
-};
+  alert("Something went wrong with Google Maps. Please try again.");
+}
