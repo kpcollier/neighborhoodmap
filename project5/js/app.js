@@ -11,8 +11,8 @@ var locations = [
   {title: 'Peppermill Reno', location: {lat: 39.49687, lng: -119.80213}}
 ];
 
-var selectedLocation = undefined;
-var selectedMarker = undefined;
+var selectedLocation;
+var selectedMarke;
 var map = null;
 //Create map
 function initMap() {
