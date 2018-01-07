@@ -13,11 +13,11 @@ var locations = [
 
 var selectedLocation = undefined;
 var selectedMarker = undefined;
-
+var map = null;
 //Create map
 function initMap() {
         var reno = {lat: 39.5067, lng: -119.7899};
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 9,
           center: reno
         });
@@ -73,6 +73,10 @@ if(selectedLocation) {
         function populateInfoWindow(marker, infowindow) {
           if (infowindow.marker != marker) {
             infowindow.marker = marker;
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+              marker.setAnimation(null);
+            }, 1500);
             //infowindow.setContent(getContentString(marker));
             //infowindow.open(map, marker);
             infowindow.addListener('closeclick', function() {
@@ -80,6 +84,9 @@ if(selectedLocation) {
             });
 			var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
 			var articleStr;
+      var wikiRequestTimeout = setTimeout(function() {
+        $wikiElem.text("Error with Wikipedia resources");
+      }, 8000);
 			var contentString = '<h3' + marker.title + '</h3';
 			$.ajax({
 				url: wikiUrl,
@@ -97,7 +104,7 @@ if(selectedLocation) {
 					var url = 'http://en.wikipedia.org/wiki/' + articleStr;
 					contentString = contentString + '<div class="infoWindow"><h1><strong>' + marker.title + '</strong></h1><br>' + '<p>' + "View Resort Article Here:" + '<p>' + '<a href=\"' + url + '\">' + url + '</a>' + '<br>';
 				};
-				//clearTimeout(wikiRequestTimeout);
+				clearTimeout(wikiRequestTimeout);
 				infowindow.setContent(contentString);
 
 			  }
@@ -122,9 +129,14 @@ if(selectedLocation) {
 var myViewModel = function() {
   var self = this;
 
-this.filter = ko.observableArray('');
+this.filter = ko.observable('');
+
+this.showSidePanel = ko.observable(true);
 
 
+this.switchPanel = function() {
+  this.showSidePanel(!this.showSidePanel());
+}
   this.placesList = ko.observableArray([
     {title: 'Eldorado Resort Casino', location: {lat: 39.52947, lng: -119.81497}},
     {title: 'Atlantis Casino Resort Spa', location: {lat: 39.48890, lng: -119.79369}},
@@ -133,11 +145,20 @@ this.filter = ko.observableArray('');
     {title: 'Grand Sierra Resort', location: {lat: 39.52316, lng: -119.77842}},
     {title: 'Peppermill Reno', location: {lat: 39.49687, lng: -119.80213}}
   ]);
+
   this.filter.subscribe( (newValue) => {
     this.placesList([]);
+	for(var i=0; i< markers.length; i++) {
+		if(!markers[i].title.toUpperCase().includes(newValue.toUpperCase())) {
+			markers[i].setMap(null);
+		} else {
+			markers[i].setMap(map);
+		}
+	}
     for(var i=0; i< locations.length; i++) {
-      if(locations[i].title.includes(newValue)) {
+      if(locations[i].title.toUpperCase().includes(newValue.toUpperCase())) {
         this.placesList.push(locations[i]);
+		
       }
     }
   }, this)
