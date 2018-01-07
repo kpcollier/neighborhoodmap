@@ -35,6 +35,15 @@ function initMap() {
 
         //Create Markers from locations array
 
+		function invokePopulateWindow() {
+			populateInfoWindow(this, largeInfowindow);
+		}
+		function invokeSetIconWithHighlight() {
+			this.setIcon(highlightedIcon);
+		}
+		function invokeSetIconWithDefault() {
+			this.setIcon(defaultIcon);
+		}
         for (var i=0; i < locations.length; i++) {
           var position = locations[i].location;
           var title = locations[i].title;
@@ -52,20 +61,15 @@ function initMap() {
 
           bounds.extend(marker.position);
 
-          marker.addListener('click', function() {
-            populateInfoWindow(this, largeInfowindow);
-          });
-
-          marker.addListener('mouseover', function() {
-            this.setIcon(highlightedIcon);
-          });
-          marker.addListener('mouseout', function() {
-            this.setIcon(defaultIcon);
-          });
+          
 
 if(selectedLocation) {
   populateInfoWindow(selectedMarker, largeInfowindow);
 }
+          marker.addListener('click', invokePopulateWindow);
+
+          marker.addListener('mouseover', invokeSetIconWithHighlight);
+          marker.addListener('mouseout', invokeSetIconWithDefault);
 
           map.fitBounds(bounds);
 
@@ -164,7 +168,7 @@ this.switchPanel = function() {
 			markers[i].setMap(map);
 		}
 	}
-    for(var i=0; i< locations.length; i++) {
+    for( i=0; i< locations.length; i++) {
       if(locations[i].title.toUpperCase().includes(newValue.toUpperCase())) {
         this.placesList.push(locations[i]);
 
