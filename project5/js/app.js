@@ -133,6 +133,14 @@ this.filter = ko.observable('');
 
 this.showSidePanel = ko.observable(true);
 
+this.deviceType = function() {
+	if ($(window).width() > 960)
+    layoutType('normal')
+  else if ($(window).width() <= 960)
+    layoutType('compact')
+
+	return layoutType;
+}
 
 this.switchPanel = function() {
   this.showSidePanel(!this.showSidePanel());
@@ -158,14 +166,22 @@ this.switchPanel = function() {
     for(var i=0; i< locations.length; i++) {
       if(locations[i].title.toUpperCase().includes(newValue.toUpperCase())) {
         this.placesList.push(locations[i]);
-		
+
       }
     }
   }, this)
-  this.showPopup = function(index) {
-    var position = locations[index].location;
-    var title = locations[index].title;
-    console.log( locations[index]);
+  this.showPopup = function(index, data) {
+	  console.log(data);
+	  var mark = null;
+	  for(var i=0; i< markers.length; i++) {
+		  if(markers[i].title === data.title) {
+			  mark = markers[i];
+			  break;
+		  }
+	  }
+    var position = mark.location;
+    var title = mark.title;
+
     var defaultIcon = new google.maps.MarkerImage(
       'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + '00B4CC' +
       '|40|_|%E2%80%A2',
@@ -181,7 +197,7 @@ this.switchPanel = function() {
           icon: defaultIcon
         });
     selectedMarker = marker;
-    google.maps.event.trigger(markers[index], 'click')
+    google.maps.event.trigger(mark, 'click')
     selectedLocation = true;
     //initMap();
   }
