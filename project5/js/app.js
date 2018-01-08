@@ -61,7 +61,7 @@ function initMap() {
 
           bounds.extend(marker.position);
 
-          
+
 
 if(selectedLocation) {
   populateInfoWindow(selectedMarker, largeInfowindow);
@@ -89,9 +89,13 @@ if(selectedLocation) {
             });
 			var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
 			var articleStr;
+      var wikiErrorMessage = '';
       var wikiRequestTimeout = setTimeout(function() {
-        $wikiElem.text("Error with Wikipedia resources");
-      }, 8000);
+        wikiErrorMessage = "Something went wrong with Wikipedia.";
+        console.log(wikiErrorMessage);
+        content = '<div>' + wikiErrorMessage + '</div>';
+        alert(wikiErrorMessage);
+      }, 4000);
 			var contentString = '<h3' + marker.title + '</h3';
 			$.ajax({
 				url: wikiUrl,
