@@ -81,7 +81,7 @@ if(selectedLocation) {
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function() {
               marker.setAnimation(null);
-            }, 1500);
+            }, 1400);
             //infowindow.setContent(getContentString(marker));
             //infowindow.open(map, marker);
             infowindow.addListener('closeclick', function() {
